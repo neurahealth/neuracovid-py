@@ -1,0 +1,11 @@
+Tensorflow==1.14.0
+numpy
+opencv-python
+scikit-Learn
+matplotlib
+pydicom
+pandas
+firebase_admin
+google-cloud-pubsub
+python-dotenv
+
