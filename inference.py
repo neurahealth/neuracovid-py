@@ -13,7 +13,7 @@ from firebase_admin import firestore,storage
 from firebase_admin import credentials
 from google.cloud import pubsub
 from google.cloud import storage as store
-import logging
+import logging.handlers
 import dotenv
 dotenv.load_dotenv()
 from distutils.dir_util import copy_tree
