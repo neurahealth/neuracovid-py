@@ -4,23 +4,20 @@ and is available here: https://github.com/lindawangg/COVID-Net/blob/master/infer
 Neura Health made modifications to inference.py to run with neuracovid application.
 """
 
-import json
+import warnings
+warnings.filterwarnings('ignore',category=FutureWarning)
 import sys
+import json
 import firebase_admin
 from firebase_admin import firestore,storage
 from firebase_admin import credentials
 from google.cloud import pubsub
 from google.cloud import storage as store
 import logging
-_logger = logging.getLogger(__name__)
-_logger.addHandler(logging.StreamHandler(sys.stdout))
-_logger.setLevel(logging.INFO)
 import dotenv
 dotenv.load_dotenv()
 from distutils.dir_util import copy_tree
 import shutil
-import warnings
-warnings.filterwarnings('ignore',category=FutureWarning)
 
 #Covid-net packages
 import numpy as np
@@ -202,7 +199,7 @@ def main():
     except KeyboardInterrupt:
         # User  exits the script early.
         future.cancel()             #to cancel the process with keyboard interrupt Ctrl+c
-        _logger.info('Received keyboard interrupt, exiting...')
+        print('Received keyboard interrupt, exiting...')
     
     print("inference-module terminated")        
 
