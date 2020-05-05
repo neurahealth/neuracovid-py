@@ -40,12 +40,9 @@ from tensorflow.python.framework import ops
 class PubsubMessageHandler():
     
     def PubsubCallback(self,message):
-        #print("start pubsubcallback")
         msg_id =  message.message_id
-        #print(msg_id)
         filename = msg_id+'.log' 
-        #print(filename)
-
+        
         my_logger = logging.getLogger(msg_id)
         my_logger.setLevel(logging.INFO)
         handler = logging.handlers.RotatingFileHandler(filename, maxBytes=20) # will create logger file
@@ -109,8 +106,7 @@ class PubsubMessageHandler():
             print('Normal: {:.3f}, Pneumonia: {:.3f}, COVID-19: {:.3f}'.format(pred[0][0], pred[0][1], pred[0][2]))
             print('**DISCLAIMER**')
             print('Do not use this prediction for self-diagnosis. You should check with your local authorities for the latest advice on seeking medical assistance.')
-            #print(currentTime)
-            
+
             N = pred[0][0] # Normal
             P = pred[0][1] # Pneumonia 
             C = pred[0][2] # COVID-19
@@ -166,7 +162,7 @@ class PubsubMessageHandler():
         log_bucket = storage_client.get_bucket(logs_bucket)
         log_blob = log_bucket.blob('{0}/logs/{1}/{2}'.format(userId,date,currentTime))
         log_blob.upload_from_filename('{}.log'.format(msg_id))
-        #print(msg_id)
+        
         os.remove('./{}.log'.format(msg_id))
         os.remove('./assets/{}.jpeg'.format(msg_id))
         print("waiting for new message...")
