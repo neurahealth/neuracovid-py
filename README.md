@@ -61,16 +61,19 @@ COVID-Net.git is a open source repository to fight againest the pandemic COVID-1
 py directory
 
 ### Step 7
-#### [Model] go to https://drive.google.com/drive/folders/1eNidqMyz3isLjGYN1evzQu--A-JVkzbk save in google drive 
-#### google_drive_to_google_cloud_storage.ipynb file
+####  save models in google drive 
+#### [Model-CXR-Large] go to https://bit.ly/CovidNet-CXR-Large
+#### [Model-SEV-GEO]   go to https://bit.ly/COVIDNet-SEV-GEO 
+#### [Model-SEV-OPC]   go to https://bit.ly/COVIDNet-SEV-OPC
+#### google drive to google cloud storage.ipynb 
 This file will help to save model from google drive to storage bucket,run commands in colab to save model in storage bucket 
 ### Step 8
-#### cd COVID-Net ; sudo mkdir models ; cd models ; sudo mkdir COVIDNet-CXR-Large ; cd COVIDNet-CXR-Large
+#### cd COVID-Net ; sudo mkdir models ; cd models 
 create path to store model
-#### gsutil cp gs://bucket_name/checkpoint .
-#### gsutil cp gs://bucket_name/model-8485.data-00000-of-00001 .
-#### gsutil cp gs://bucket_name/model-8485.index .
-#### gsutil cp gs://bucket_name/model.meta .
+#### gsutil cp gs://bucket_name/COVIDNet-CXR-Large .
+#### gsutil cp gs://bucket_name/COVIDNet-SEV-GEO .
+#### gsutil cp gs://bucket_name/COVIDNet-SEV-OPC .
+
 This will copy model files from storage bucket (these files should be inside models/COVIDNet-CXR-Large/).
 #### cd .. ; cd ..
 come back to root directory to run script inference.py
@@ -81,12 +84,14 @@ gsutil cp gs://bucket_name/.env .
 #### give grants to /opt path” to successfully run python inference.py command
 ### run
 #### python inference.py
-## How inference.py work ?
+###### open another shell 
+#### python inference_severity.py
+## How inference.py and inference_severity.py work ?
 inference.py script has a updated AI model \
 This script will get trigger when a new message comes in pubsub topic, message will sent to topic upon the image upload by the user,
 findings will be store in firebase-database for every user uniquely
 #### Inferences will be:
-prediction and sensitivity \
+prediction, sensitivity and severity \
 Normal, Pneumonia, COVID-19 and sensitivity will stored in pecentage
 ## Deployment
 application can be deloped to GCP kubernetes engine 
