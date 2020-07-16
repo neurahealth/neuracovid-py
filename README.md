@@ -94,6 +94,6 @@ findings will be store in firebase-database for every user uniquely
 prediction, sensitivity and severity \
 Normal, Pneumonia, COVID-19 and sensitivity will stored in pecentage
 ## Deployment
-application can be deloped to GCP kubernetes engine 
+application can be deployed to GCP kubernetes engine 
 
 #### Done Cheers!
