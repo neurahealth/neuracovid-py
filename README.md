@@ -83,13 +83,14 @@ gsutil cp gs://bucket_name/credential.json . \
 gsutil cp gs://bucket_name/.env .
 #### give grants to /opt path” to successfully run python inference.py command
 ### run
-#### python inference.py
+#### for inference only > python inference.py  
+#### for inference and heatmap > inference_heatmap.py 
 ###### open another shell 
 #### python inference_severity.py
-## How inference.py and inference_severity.py work ?
-inference.py script has a updated AI model \
+## How inference.py | inference_heatmap.py  and inference_severity.py work ?
+inference.py | inference_heatmap.py script has a updated AI model \
 This script will get trigger when a new message comes in pubsub topic, message will sent to topic upon the image upload by the user,
-findings will be store in firebase-database for every user uniquely
+findings will be store in firebase-database and heatmaps to storage for every user uniquely
 #### Inferences will be:
 prediction, sensitivity and severity \
 Normal, Pneumonia, COVID-19 and sensitivity will stored in pecentage
