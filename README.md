@@ -59,12 +59,15 @@ python-dotenv
 #### git clone https://github.com/lindawangg/COVID-Net.git
 COVID-Net.git is a open source repository to fight againest the pandemic COVID-19, above command will clone it in neuracovid-
 py directory
+#### git clone https://github.com/haydengunraj/COVIDNet-CT.git
 
 ### Step 7
 ####  save models in google drive 
 #### [Model-CXR-Large] go to https://bit.ly/CovidNet-CXR-Large
 #### [Model-SEV-GEO]   go to https://bit.ly/COVIDNet-SEV-GEO 
 #### [Model-SEV-OPC]   go to https://bit.ly/COVIDNet-SEV-OPC
+#### [COVIDNet-CT-A]   go to https://bit.ly/2BAPyvM
+
 #### google drive to google cloud storage.ipynb 
 This file will help to save model from google drive to storage bucket,run commands in colab to save model in storage bucket 
 ### Step 8
@@ -75,8 +78,12 @@ create path to store model
 #### gsutil cp gs://bucket_name/COVIDNet-SEV-OPC .
 
 This will copy model files from storage bucket (these files should be inside models/COVIDNet-CXR-Large/).
-#### cd .. ; cd ..
+#### cd ..
+#### gsutil cp gs://bucket_name/COVIDNet-CT-A COVIDNet-CT-A/models
+#### cd ..
+
 come back to root directory to run script inference.py
+
 #### Copy crerdential file and environment file to working directory(COVID-Net)
 ##### save credential .json file and .env in storage bucket
 gsutil cp gs://bucket_name/credential.json . \
@@ -85,6 +92,7 @@ gsutil cp gs://bucket_name/.env .
 ### run
 #### for inference only > python inference.py  
 #### for inference and heatmap > inference_heatmap.py 
+#### for CT innference > COVIDNet-CT-A/covidnet_ct.py
 ###### open another shell 
 #### python inference_severity.py
 ## How inference.py | inference_heatmap.py  and inference_severity.py work ?
