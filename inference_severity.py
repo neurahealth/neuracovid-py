@@ -85,13 +85,13 @@ class PubsubMessageHandler():
 
                     self.graph = tf.Graph()
                     with self.graph.as_default():
-                        self.saver = tf.train.import_meta_graph(self.meta_file)
+                        self.saver = tf.compat.v1.train.import_meta_graph(self.meta_file)
                         self.input_tr = self.graph.get_tensor_by_name('input_1:0')
                         self.phase_tr = self.graph.get_tensor_by_name('keras_learning_phase:0')
                         self.output_tr = self.graph.get_tensor_by_name('MLP/dense_1/MatMul:0')
 
                 def infer(self, image):
-                    with tf.Session(graph=self.graph) as sess:
+                    with tf.compat.v1.Session(graph=self.graph) as sess:
                         self.saver.restore(sess, self.ckpt_file)
 
                         outputs = defaultdict(list)
