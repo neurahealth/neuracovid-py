@@ -92,12 +92,12 @@ class PubsubMessageHandler():
             mapping = {'normal': 0, 'pneumonia': 1, 'COVID-19': 2}
             inv_mapping = {0: 'normal', 1: 'pneumonia', 2: 'COVID-19'}
 
-            sess = tf.Session()
-            tf.get_default_graph()
-            saver = tf.train.import_meta_graph(os.path.join(args.weightspath, args.metaname))
+            sess = tf.compat.v1.Session()
+            tf.compat.v1.get_default_graph()
+            saver = tf.compat.v1.train.import_meta_graph(os.path.join(args.weightspath, args.metaname))
             saver.restore(sess, os.path.join(args.weightspath, args.ckptname))
 
-            graph = tf.get_default_graph()
+            graph = tf.compat.v1.get_default_graph()
 
             image_tensor = graph.get_tensor_by_name(args.in_tensorname)
             pred_tensor = graph.get_tensor_by_name(args.out_tensorname)
